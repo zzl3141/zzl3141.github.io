@@ -1,0 +1,30 @@
+permalink   : /:categories/:year/:title/
+markdown    : kramdown
+highlighter :rouge
+paginate: 2 #6
+comments: true
+paginate_path: "/page/:num"
+
+source: source
+destination: _site
+sass:
+  sass_dir: _scss
+  style: compressed
+
+# Site settings
+title:zzl3141的博客
+description: "A free Jekyll theme"
+email: 2212058406@qq.com
+baseurl: "" # the subpath of your site, e.g. /blog/
+#url: "http://yourdomain.com"
+url: "http://zzl3141.github.io"
+repository: "https://github.com/zzl3141/zzl3141.github.io"
+disqus_shortname: "fernandomoreira"
+google_analytics: UA-52446115-1
+
+# social footer
+social:
+  github:
+    slug: github
+    link: http://github.com/zzl3141
+  
