@@ -12,6 +12,15 @@ body { margin:0; background:var(--bg); color:var(--text);
   line-height:1.9; font-size:17px; }
 .topbar { max-width:900px; margin:0 auto; padding:20px 24px 0; }
 .topbar a { color:var(--accent); text-decoration:none; font-size:15px; }
+img.avatar { width:120px; height:120px; border-radius:50%; object-fit:cover;
+  display:block; margin:0 auto 18px; border:3px solid var(--accent); }
+.welcome { text-align:center; color:var(--accent); font-size:1.15rem;
+  font-weight:600; margin:0 0 6px; }
+.page-sub { text-align:center; color:var(--muted); font-size:0.95rem;
+  margin:0 0 10px; }
+.page-foot { text-align:center; color:var(--muted); font-size:0.85rem;
+  padding:20px 16px 40px; }
+.page-foot a { color:var(--accent); }
 article { max-width:900px; margin:24px auto 80px; background:#fff;
   border:1px solid var(--border); border-radius:14px; padding:48px 56px; }
 h1 { font-size:1.9rem; margin:0 0 8px; line-height:1.4; }
@@ -46,6 +55,9 @@ hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
 <body>
 <div class="topbar"><a href="/">← 返回博客首页</a></div>
 <article>
+<img class="avatar" src="/images/zzl3141.jpg" alt="zzl3141的头像">
+<p class="welcome">👋 欢迎来到 zzl3141 的个人主页</p>
+<p class="page-sub">记录学习、作业与成长 · 软件工程第一次博客作业</p>
 <h1>zzl3141的第一次博客作业</h1>
 <table>
 <thead>
@@ -216,5 +228,6 @@ hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
 <h1>github个人主页搭建</h1>
 <p>选择方案二,利用 Jekyll Theme和github pages,搭建个人博客</p>
 </article>
+<div class="page-foot">© 2026 zzl3141 · 用心制作于 GitHub Pages · <a href="/">返回首页</a></div>
 </body>
 </html>
