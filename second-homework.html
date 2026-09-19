@@ -69,7 +69,7 @@ hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
 </tbody></table>
 <h2>前言</h2>
 <p>这次作业我用 <strong>Codex</strong> 写了一个「一箭又一箭」小游戏：Python + Tkinter，5 个关卡， 从需求拆解、写代码、调动画到写测试，每一步都是和 AI 一起做出来的。</p>
-<p>有一点想先说清楚：下面写到的坑<strong>都是这次真实踩过的</strong>，包括 AI 推荐的工具装不上、 生成的关卡根本无解、做出来的动画"做了但看不见"。我没有把过程美化成"AI 一次写对"， 因为真实情况恰恰相反——AI 出稿很快，但每一版都要我自己跑起来、测出来才算数。</p>
+<p>有一点想先说清楚：下面写到的坑<strong>都是这次真实踩过的</strong>，包括 AI 推荐的工具装不上、 生成的关卡根本无解、做出来的动画"做了但看不见"。我没有把过程美化成"AI 一次写对"， 因为真实情况恰恰相反——AI 出稿很快，但每一版都要我自己跑起来、测出来才知道可能还有很多bug没修。</p>
 <p>游戏跑起来只需要一句 <code>python main.py</code>，<strong>不需要安装任何第三方库</strong>。</p>
 <h2>一、项目展示</h2>
 <h3>玩法演示</h3>
@@ -81,9 +81,7 @@ hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
 <p><img alt="箭头放大" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094250947-1327798770.png"></p>
 <p>鼠标悬停在流星上会高亮整条流星，并从头部画出一条虚线预览飞行路径：绿色表示能飞出去， 红色表示被挡住，同时挡路的那条流星会泛红光。这条辅助线可以在底栏一键关掉，想自己推演的时候用。</p>
 <p><img alt="悬停反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094126834-626884102.png"></p>
-<p>点中之后，整条流星会像卷尺被抽出去一样，一节节解开、飞出棋盘：</p>
-<p><img alt="飞出动画" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094135555-510678615.png"></p>
-<p>点到被挡住的流星时，它会沿着自己的折线往前拱一下、整条变红再弹回，并扣掉一颗心：</p>
+<p>点中之后，整条流星会像卷尺被抽出去一样，一节节解开、飞出棋盘 点到被挡住的流星时，它会沿着自己的折线往前拱一下、整条变红再弹回，并扣掉一颗心：</p>
 <p><img alt="碰撞反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094131263-16142610.png"></p>
 <p>清空棋盘后弹出通关界面：</p>
 <p><img alt="通关界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094141295-2118004036.png"></p>
@@ -236,15 +234,15 @@ class Arrow:
 <p>另外还有几个是<strong>看截图</strong>看出来的：底栏提示文字压在状态文字上、 较长的一句状态提示超出窗口下边界、标题贴住副标题。这三个都不是靠肉眼盯出来的， 而是写了个脚本把画布上每个文字元素的<strong>包围盒</strong>读出来两两比较—— 比用眼睛看截图可靠得多。</p>
 <h2>六、PSP 表格</h2>
 <table><thead><tr><th>任务</th><th>预估耗时(小时)</th><th>实际耗时(小时)</th><th>差异(小时)</th></tr></thead><tbody>
-<tr><td>需求分析与游戏设计</td><td>1.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>Python 与图形库学习</td><td>1.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>游戏界面实现</td><td>2.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>路径与碰撞逻辑实现</td><td>2.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>关卡设计与生成器</td><td>2.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>AIGC 辅助开发</td><td>3.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>测试与修改</td><td>3.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>README 与博客撰写</td><td>1.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
-<tr><td>合计</td><td>16.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>需求分析与游戏设计</td><td>1</td><td>2</td><td>+1</td></tr>
+<tr><td>Python 与图形库学习</td><td>1</td><td>0.5</td><td>-0.5</td></tr>
+<tr><td>游戏界面实现</td><td>2.5</td><td>2</td><td>-0.5</td></tr>
+<tr><td>路径与碰撞逻辑实现</td><td>2</td><td>2.5</td><td>+0.5</td></tr>
+<tr><td>关卡设计与生成器</td><td>2.5</td><td>2</td><td>-0.5</td></tr>
+<tr><td>AIGC 辅助开发</td><td>3</td><td>5</td><td>+2</td></tr>
+<tr><td>测试与修改</td><td>3</td><td>6</td><td>+3</td></tr>
+<tr><td>README 与博客撰写</td><td>1.5</td><td>3</td><td>+1.5</td></tr>
+<tr><td>合计</td><td>16.5</td><td>23.5</td><td>+7</td></tr>
 </tbody></table>
 <p>几点说明：</p>
 <ul><li>「AIGC 辅助开发」这一项没有单独计时，因为它和别的阶段完全重叠—— 写路径检测、设计关卡、改 bug、写测试，每一步都是和 AI 一起做的；</li><li>「关卡设计」超时最多，因为改了两轮：先是随机生成的关卡不可靠要重做， 后来又要为「长得像流星」补两条几何约束；</li><li>「测试与修改」也超时，因为很多时间花在了<strong>把美术效果变成可断言的测试</strong>上。</li></ul>
@@ -258,6 +256,8 @@ class Arrow:
 <p>配色那个例子也是：AI 严格满足了「相邻不同色」这个约束， 但从整体观感看，一大半箭头是同一种红色，依然单调。 还有流星拖尾——单看一颗流星，「5 条粗尾巴」确实华丽； 但一关有十几颗，华丽就变成了糊。最后我是按<strong>整个棋盘的观感</strong>去定参数， 而不是按单个图形的观感，这两者在做界面时是不一样的思路。</p>
 <p><strong>有些坑只有真做到那一步才会遇到。</strong></p>
 <p>从「一个能跑的游戏」到「一个能交出去的项目」，中间还有很多事情： README 要能让人照着跑起来、GitHub 不能只传一次、代码要分层到逻辑层可以脱离界面测试…… 这些在开发阶段完全暴露不出来，因为在自己机器上跑永远是对的。</p>
+<h2>八、github pages</h2>
+<p><a href="https://zzl3141.github.io/">我的github pages网页</a></p>
 </article>
 <div class="page-foot">© 2026 zzl3141 · 用心制作于 GitHub Pages · <a href="/">返回首页</a></div>
 </body>
