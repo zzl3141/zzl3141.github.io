@@ -74,22 +74,22 @@ hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
 <h2>一、项目展示</h2>
 <h3>玩法演示</h3>
 <p>棋盘上每一条箭头都是一颗<strong>流星</strong>：头部是一颗五角星，后面拖着几条散开的尾巴。 点它，它就会朝着头部所指的方向飞出去；如果前面没有别的东西挡着，整条流星会像<strong>卷尺被抽出去</strong>一样 一节节解开、飞出棋盘。</p>
-<p><img alt="玩法演示" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919101924294-1546509069.gif"></p>
-<p><img alt="开始界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094035872-239604833.png"></p>
-<p><img alt="游戏界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094120341-980163958.png"></p>
+<p><img alt="玩法演示" src="/images/hw2-demo.gif"></p>
+<p><img alt="开始界面" src="/images/hw2-01-start.png"></p>
+<p><img alt="游戏界面" src="/images/hw2-02-level1.png"></p>
 <p>放大的流星箭头：头部是一颗五角星，后面拖着几条从星星背后散开的条纹， 越往尾部越细、末端是圆的，拐弯处做了圆角。</p>
-<p><img alt="箭头放大" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094250947-1327798770.png"></p>
+<p><img alt="箭头放大" src="/images/hw2-03-arrow-zoom.png"></p>
 <p>鼠标悬停在流星上会高亮整条流星，并从头部画出一条虚线预览飞行路径：绿色表示能飞出去， 红色表示被挡住，同时挡路的那条流星会泛红光。这条辅助线可以在底栏一键关掉，想自己推演的时候用。</p>
-<p><img alt="悬停反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094126834-626884102.png"></p>
+<p><img alt="悬停反馈" src="/images/hw2-04-hover.png"></p>
 <p>点中之后，整条流星会像卷尺被抽出去一样，一节节解开、飞出棋盘 点到被挡住的流星时，它会沿着自己的折线往前拱一下、整条变红再弹回，并扣掉一颗心：</p>
-<p><img alt="碰撞反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094131263-16142610.png"></p>
+<p><img alt="碰撞反馈" src="/images/hw2-05-collision.png"></p>
 <p>清空棋盘后弹出通关界面：</p>
-<p><img alt="通关界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094141295-2118004036.png"></p>
+<p><img alt="通关界面" src="/images/hw2-06-clear.png"></p>
 <h3>界面</h3>
-<p><img alt="第五关" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094501379-355203832.png"></p>
-<p><img alt="失败界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094147397-1490686564.png"></p>
+<p><img alt="第五关" src="/images/hw2-07-level5.png"></p>
+<p><img alt="失败界面" src="/images/hw2-08-failed.png"></p>
 <p>背景是一片<strong>会动的星空</strong>：三层星星按不同速度缓慢漂移、各自明暗闪烁，偶尔还有一颗流星划过。</p>
-<p><img alt="星空背景" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094152684-985966262.png"></p>
+<p><img alt="星空背景" src="/images/hw2-09-starry-sky.png"></p>
 <h2>二、项目介绍</h2>
 <h3>游戏规则</h3>
 <p>棋盘上摆放着若干条带方向的流星。每条流星由若干首尾相接的格子组成，长度随机、身体可以弯折， 不同流星会互相缠绕。每条流星只有<strong>头部</strong>带朝向（上、下、左、右四种之一）。 点击任意一条流星时，程序从它的头部沿着朝向一直看到棋盘边界：</p>
