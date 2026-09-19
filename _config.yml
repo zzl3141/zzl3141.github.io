@@ -1,8 +1,6 @@
 permalink: /:categories/:year/:title/
 markdown: kramdown
 highlighter: rouge
-paginate: 2
-paginate_path: "/page/:num"
 
 destination: _site
 sass:

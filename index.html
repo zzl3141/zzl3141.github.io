@@ -45,16 +45,3 @@ bodyclass: home
   </a>
   {%- endfor %}
 </section>
-
-{% if paginator.posts.size > 0 %}
-<h2 class="section-title">博客随笔</h2>
-<section class="posts txt-center container">
-
-  {% for post in paginator.posts %}
-    {% include article.html %}
-  {% endfor %}
-
-  {% include pagination.html %}
-
-</section>
-{% endif %}
