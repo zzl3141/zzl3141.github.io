@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zzl3141的第二次博客作业</title>
+<style>
+:root { --accent:#2ecc71; --text:#222; --muted:#666; --border:#e5e7eb; --bg:#f7f8f9; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--text);
+  font-family:"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.9; font-size:17px; }
+.topbar { max-width:900px; margin:0 auto; padding:20px 24px 0; }
+.topbar a { color:var(--accent); text-decoration:none; font-size:15px; }
+img.avatar { width:120px; height:120px; border-radius:50%; object-fit:cover;
+  display:block; margin:0 auto 18px; border:3px solid var(--accent); }
+.welcome { text-align:center; color:var(--accent); font-size:1.15rem;
+  font-weight:600; margin:0 0 6px; }
+.page-sub { text-align:center; color:var(--muted); font-size:0.95rem;
+  margin:0 0 10px; }
+.page-foot { text-align:center; color:var(--muted); font-size:0.85rem;
+  padding:20px 16px 40px; }
+.page-foot a { color:var(--accent); }
+article { max-width:900px; margin:24px auto 80px; background:#fff;
+  border:1px solid var(--border); border-radius:14px; padding:48px 56px; }
+h1 { font-size:1.9rem; margin:0 0 8px; line-height:1.4; }
+h1 + table { margin-top:24px; }
+h2 { font-size:1.45rem; margin-top:2em; padding-bottom:8px;
+  border-bottom:2px solid var(--accent); }
+h3 { font-size:1.2rem; margin-top:1.6em; }
+h4 { font-size:1.05rem; }
+a { color:#1a73e8; text-decoration:none; }
+a:hover { text-decoration:underline; }
+table { border-collapse:collapse; width:100%; margin:20px 0; display:block; overflow-x:auto; }
+th, td { border:1px solid var(--border); padding:10px 14px; text-align:left; vertical-align:top; }
+th { background:#eefaf3; }
+img { max-width:100%; height:auto; display:block; margin:16px auto; border-radius:10px; }
+ul, ol { padding-left:1.6em; }
+li { margin:6px 0; }
+strong { font-weight:700; }
+pre { background:#f6f8fa; border:1px solid var(--border); border-radius:8px;
+  padding:14px 16px; overflow-x:auto; font-size:0.92rem; line-height:1.6; }
+code { font-family:Consolas,"Courier New",monospace; background:#f6f8fa;
+  padding:2px 5px; border-radius:4px; font-size:0.92em; }
+pre code { background:none; padding:0; }
+blockquote { margin:1em 0; padding:4px 18px; border-left:4px solid var(--accent);
+  background:#f2fbf6; color:var(--muted); }
+hr { border:none; border-top:1px solid var(--border); margin:2em 0; }
+@media (max-width:600px) {
+  article { padding:26px 18px; margin:12px auto 50px; }
+  h1 { font-size:1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="topbar"><a href="/">← 返回博客首页</a></div>
+<article>
+<img class="avatar" src="/images/zzl3141.jpg" alt="zzl3141的头像">
+<p class="welcome">👋 欢迎来到 zzl3141 的个人主页</p>
+<p class="page-sub">记录学习、作业与成长 · 软件工程第二次博客作业</p>
+<h1>用 AIGC 做一个「一箭又一箭」小游戏</h1>
+<h2>作业信息</h2>
+<table><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody>
+<tr><td>这个作业属于哪个课程</td><td><a href="https://edu.cnblogs.com/campus/fzu/2026-01SoftwareEngineeringandSoftwareEngineeringPractice">2026秋软件工程与软件工程实践</a></td></tr>
+<tr><td>这个作业要求在哪里</td><td><a href="https://edu.cnblogs.com/campus/fzu/2026-01SoftwareEngineeringandSoftwareEngineeringPractice/homework/16718">软件工程课程第二次个人作业</a></td></tr>
+<tr><td>这个作业的目标</td><td>使用 Python 和 AIGC 完成「一箭又一箭」小游戏</td></tr>
+<tr><td>学号</td><td>102401231</td></tr>
+<tr><td>GitHub 仓库</td><td><a href="https://github.com/zzl3141/arrow-away">https://github.com/zzl3141/arrow-away</a></td></tr>
+</tbody></table>
+<h2>前言</h2>
+<p>这次作业我用 <strong>Codex</strong> 写了一个「一箭又一箭」小游戏：Python + Tkinter，5 个关卡， 从需求拆解、写代码、调动画到写测试，每一步都是和 AI 一起做出来的。</p>
+<p>有一点想先说清楚：下面写到的坑<strong>都是这次真实踩过的</strong>，包括 AI 推荐的工具装不上、 生成的关卡根本无解、做出来的动画"做了但看不见"。我没有把过程美化成"AI 一次写对"， 因为真实情况恰恰相反——AI 出稿很快，但每一版都要我自己跑起来、测出来才算数。</p>
+<p>游戏跑起来只需要一句 <code>python main.py</code>，<strong>不需要安装任何第三方库</strong>。</p>
+<h2>一、项目展示</h2>
+<h3>玩法演示</h3>
+<p>棋盘上每一条箭头都是一颗<strong>流星</strong>：头部是一颗五角星，后面拖着几条散开的尾巴。 点它，它就会朝着头部所指的方向飞出去；如果前面没有别的东西挡着，整条流星会像<strong>卷尺被抽出去</strong>一样 一节节解开、飞出棋盘。</p>
+<p><img alt="玩法演示" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919101924294-1546509069.gif"></p>
+<p><img alt="开始界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094035872-239604833.png"></p>
+<p><img alt="游戏界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094120341-980163958.png"></p>
+<p>放大的流星箭头：头部是一颗五角星，后面拖着几条从星星背后散开的条纹， 越往尾部越细、末端是圆的，拐弯处做了圆角。</p>
+<p><img alt="箭头放大" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094250947-1327798770.png"></p>
+<p>鼠标悬停在流星上会高亮整条流星，并从头部画出一条虚线预览飞行路径：绿色表示能飞出去， 红色表示被挡住，同时挡路的那条流星会泛红光。这条辅助线可以在底栏一键关掉，想自己推演的时候用。</p>
+<p><img alt="悬停反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094126834-626884102.png"></p>
+<p>点中之后，整条流星会像卷尺被抽出去一样，一节节解开、飞出棋盘：</p>
+<p><img alt="飞出动画" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094135555-510678615.png"></p>
+<p>点到被挡住的流星时，它会沿着自己的折线往前拱一下、整条变红再弹回，并扣掉一颗心：</p>
+<p><img alt="碰撞反馈" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094131263-16142610.png"></p>
+<p>清空棋盘后弹出通关界面：</p>
+<p><img alt="通关界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094141295-2118004036.png"></p>
+<h3>界面</h3>
+<p><img alt="第五关" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094501379-355203832.png"></p>
+<p><img alt="失败界面" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094147397-1490686564.png"></p>
+<p>背景是一片<strong>会动的星空</strong>：三层星星按不同速度缓慢漂移、各自明暗闪烁，偶尔还有一颗流星划过。</p>
+<p><img alt="星空背景" src="https://img2024.cnblogs.com/blog/3595368/202609/3595368-20260919094152684-985966262.png"></p>
+<h2>二、项目介绍</h2>
+<h3>游戏规则</h3>
+<p>棋盘上摆放着若干条带方向的流星。每条流星由若干首尾相接的格子组成，长度随机、身体可以弯折， 不同流星会互相缠绕。每条流星只有<strong>头部</strong>带朝向（上、下、左、右四种之一）。 点击任意一条流星时，程序从它的头部沿着朝向一直看到棋盘边界：</p>
+<ul><li>前方没有被任何东西占住 → 整条流星飞出棋盘并被消除；</li><li>前方被挡住 → 流星留在原地，给出碰撞反馈，并损失一颗心。</li></ul>
+<p>清空当前关卡的流星即通关；5 颗心用完则本关失败，可以重新开始。 因为流星有长度、会拐弯，<strong>一条流星的身体经常会挡住别人的去路</strong>， 所以「先放哪一条、后放哪一条」就变得很重要。</p>
+<h3>五个关卡</h3>
+<table><thead><tr><th>关卡</th><th>棋盘</th><th>流星数</th><th>心</th><th>开局能飞的</th><th>最长的一条</th></tr></thead><tbody>
+<tr><td>第 1 关 · 初识缠绕</td><td>8 × 8</td><td>6</td><td>5</td><td>2 条</td><td>4 格</td></tr>
+<tr><td>第 2 关 · 交错</td><td>9 × 9</td><td>8</td><td>5</td><td>2 条</td><td>5 格</td></tr>
+<tr><td>第 3 关 · 层层缠绕</td><td>10 × 10</td><td>10</td><td>5</td><td>3 条</td><td>6 格</td></tr>
+<tr><td>第 4 关 · 死结</td><td>10 × 10</td><td>11</td><td>5</td><td>3 条</td><td>6 格</td></tr>
+<tr><td>第 5 关 · 大蛇盘踞</td><td>11 × 11</td><td>12</td><td>5</td><td>3 条</td><td>7 格</td></tr>
+</tbody></table>
+<p>心数每一关都是 5 颗，切换关卡、重新开始时都会补满。</p>
+<h3>界面设计</h3>
+<p>信息全部做成图形化，而不是堆数字：</p>
+<ul><li><strong>当前关卡</strong>：一排进度圆点，已通关的点亮成绿色，当前关卡放大成蓝色；</li><li><strong>剩余流星</strong>：圆角进度条 + 「剩余 / 总数」；</li><li><strong>剩余机会</strong>：5 颗爱心，实心是还剩的，空心是用掉的；</li><li><strong>用时</strong>：时钟图标 + 分:秒。</li></ul>
+<p>底栏是提示语和六个按钮：重新开始、撤销、提示、辅助线开关、自动演示、返回首页，每个都标了快捷键。</p>
+<h3>项目运行方式</h3>
+<p>只需要 Python 3.10 及以上，<strong>不需要安装任何第三方库</strong>——图形界面用的 Tkinter 是标准库自带的， 这也是当初选它而不是 Pygame 的原因（见下面 AIGC 记录第 1 条）。</p>
+<pre><code>python main.py</code></pre>
+<p>想跑一遍自动化测试：</p>
+<pre><code>python -m unittest discover -s tests -t . -v</code></pre>
+<h3>几个我觉得值得一提的设计</h3>
+<p><strong>1. 提示功能不会把你带进死路。</strong> 按 H 给出的提示，用的是和「验证关卡能不能通关」同一个求解器—— 任何当前可以点的流星都属于某个完整解，所以提示永远不会把你引到一个走不下去的局面。 一份逻辑被复用了三次：校验关卡、提示、自动演示。</p>
+<p><strong>2. 辅助线做成了可以关掉的开关。</strong> 悬停时那条虚线预览确实方便，但也等于替玩家把「能不能飞」判断好了。 所以底栏放了一个「辅助线 开 / 关」按钮（快捷键 G），关掉之后只保留流星自身的高亮， 想自己推演的时候用。这个状态切换关卡之后依然保持。</p>
+<p><strong>3. 所有图形都是代码画出来的，没有一张图片素材。</strong> 星空、流星、五角星、爱心、时钟、按钮，全部是用 Tkinter 的画布 API 程序化绘制的。 好处是仓库里没有素材文件、不存在版权问题，换尺寸也不用改图片—— 爱心就是心形参数方程采样出来的多边形。</p>
+<h2>三、实现思路</h2>
+<h3>3.1 流星（箭头）怎么表示</h3>
+<p>一条流星不是一格，而是<strong>一条从尾部到头部依次排列的格子路径</strong>，外加头部的朝向：</p>
+<pre><code>@dataclass(frozen=True)
+class Arrow:
+    path: Tuple[Cell, ...]   # 尾 -&gt; 头，path[-1] 是头部
+    direction: str           # 头部朝向：U / D / L / R</code></pre>
+<p>例如 <code>Arrow(((6, 5), (6, 4), (6, 3), (5, 3)), LEFT)</code> 表示一条从 <code>(6,5)</code> 出发、 先向左走到 <code>(6,3)</code>、再折向上到 <code>(5,3)</code> 的流星，头部朝左。</p>
+<p>方向用四个常量表示，配一张位移表，这样「沿着朝向往前走一格」就变成了统一的循环：</p>
+<pre><code>DELTA = {UP: (-1, 0), DOWN: (1, 0), LEFT: (0, -1), RIGHT: (0, 1)}</code></pre>
+<p>这里有个容易搞反的地方：屏幕坐标系里 <strong>y 轴是向下的</strong>，所以「向上」是行号减一。</p>
+<p>棋盘用 <code>{(行, 列): 流星编号}</code> 的字典记录每格被谁占着，查询是 O(1)。 每条流星的编号一旦定下来就不变（消除只是把它标记为离场）， 这样动画、撤销和配色都不用担心索引错位。</p>
+<h3>3.2 路径检测（核心）</h3>
+<p>这是整个程序最关键的一段。因为流星只能沿直线飞出，路径检测只需要检查同一行或同一列， 从<strong>头部前方一格</strong>开始一步步走到棋盘边界：</p>
+<pre><code>def blocking_cells(self, index):
+    arrow = self._initial[index]
+    dr, dc = DELTA[arrow.direction]
+    r, c = arrow.head[0] + dr, arrow.head[1] + dc
+    blockers = []
+    while self.in_bounds(r, c):
+        if (r, c) in self._owner:      # 这一格被任何流星占着都算挡住
+            blockers.append((r, c))
+        r += dr
+        c += dc
+    return blockers</code></pre>
+<p>返回空列表就说明前方畅通。这里踩过三个坑：</p>
+<p><strong>一是越界。</strong> 一开始写的是固定次数的循环，流星贴着边朝外指时会多走一格。 改成用 <code>in_bounds</code> 作为循环条件之后就天然收口了——索引一旦越界循环自然结束， 不需要任何特判。</p>
+<p><strong>二是方向搞反。</strong> 只有<strong>前方</strong>的东西才算阻挡。同一行里站在它「身后」的流星不影响它， 最开始的判定写成「这一行还有别的箭头就挡」，结果所有箭头都飞不出去。 我专门写了一条测试 <code>test_arrow_behind_does_not_block</code> 防止以后改坏。</p>
+<p><strong>三是忘了身体也算障碍。</strong> 这是加入可弯折的流星身体之后才出现的问题： 别人的<strong>身体</strong>横在你前面一样会挡住你。这是新规则里最容易漏的一条， 补了 <code>test_body_blocks_even_if_head_faces_away</code> 锁住。</p>
+<h3>3.3 关卡怎么保证一定能通关</h3>
+<p>随机撒箭头非常容易画出死局——比如两条箭头头对头，谁也飞不出去。 更别说现在还要求流星可以弯折缠绕。所以关卡不是随机生成的，而是用<strong>逆向构造</strong>：</p>
+<blockquote>设某一关的正解顺序是 a1, a2, …, an（a1 最先飞出）。 当我们消掉 a_i 时，棋盘上只剩 a_i, a_{i+1}, …, a_n。 所以我按 an, …, a1 的顺序摆放流星：每摆一条， 就保证它在这个局面下头部前方畅通，而且身体不会挡在自己头部前面。</blockquote>
+<p>这样构造出来的关卡，按 an 到 a1 的逆序点击就一定通关，<strong>可解性由构造过程本身保证</strong>。</p>
+<p>在这个框架下，让每条流星的长度随机（2～7 格）、走法随机（直行概率 62%，其余拐弯）， 自然长出一条条互相缠绕的流星。程序还会给候选关卡打分， 优先挑「开局被锁住的多、拐点多、覆盖率接近目标」的。</p>
+<p>为了让流星<strong>看起来真的像流星</strong>，另外加了两条硬性限制：</p>
+<ol><li>头部朝向必须等于身体最后一段的方向——身体从下面接上来，头就只能朝上。 否则画出来会像一个「头被拧了 90 度」的箭头，玩家看到的指向和实际飞出的方向对不上；</li><li>头部前面至少要有<strong>两格</strong>是直的。只直一格的话，眼睛会顺着更长的那一段身体看过去， 依旧会觉得头是歪的。</li></ol>
+<p>第 1 条由 <code>Arrow</code> 在构造时强制检查，写错数据直接报错；第 2 条由生成器保证、由测试守住。</p>
+<h3>3.4 求解器为什么用贪心就够了</h3>
+<p>求解器每一步只挑「当前头部前方畅通」的流星消掉，卡住就判定无解。它是对的，理由是：</p>
+<blockquote>消掉一条流星只会把它占的格子腾空， <strong>绝不会在别人的前进路径上新增阻挡物</strong>。 因此「某个流星现在能飞出」这件事具有单调性——现在能飞，之后也一定能飞。</blockquote>
+<p>所以只要存在通关顺序，贪心一定走得完；反过来，贪心卡住时剩下的流星互相锁死，确实无解。 这个性质对可弯折的流星同样成立，而且它让「提示」变得非常廉价： 任何当前可点击的流星都属于某个完整解，直接给出第一个就行。</p>
+<h3>3.5 配色：让缠绕的流星能分清</h3>
+<p>两条流星只要挨在一起就必须用不同颜色，否则缠绕处会糊成一片。 这是一个<strong>图着色问题</strong>：把流星看成点，挨着就连一条边， 然后贪心地给每个点挑一个「邻居没用过」的颜色。</p>
+<p>但只做到这一步还不够。第一版就是这样写的，结果截图一看， 棋盘上一大半流星都是同一种红色——因为不挨着的流星全被涂成了 0 号色。 后来加了一条规则：<strong>优先挑全局用得最少的颜色</strong>。 这样既保证相邻不同色，又让整盘棋颜色丰富起来（第五关能同时用上 10 种颜色）。</p>
+<h3>3.6 飞出动画：像卷尺一样被抽出去</h3>
+<p>这是我最花心思的一段。箭头飞出去时不是整条僵硬地平移，而是像<strong>卷尺被拉出来</strong>：</p>
+<p>把流星当成一条<strong>弧长不变的带子</strong>，沿着自己的折线往前滑，滑过头部之后就接上 一段沿飞出方向的直线。于是弯折的地方被一节节拉直、尾巴最后离场。</p>
+<p>动画不做「整体平移」，而是每一帧重新算出「此刻这条卷尺落在哪」再画一遍， 所以解开的接缝能对得严丝合缝。身后那条渐隐的拖尾也是按<strong>前几帧的真实位置</strong>画出来的， 速度快慢都不会错位。整条出界后，再在棋盘边缘闪一道光。</p>
+<p>碰撞动画复用同一套几何：往前拱一小段就顶住、再弹回来，来回两次， 顶出去的那两帧整条闪红。往前拱多远会根据「离挡路的那一格还有多远」自动收窄， 不会一头扎进别人的格子里。</p>
+<h3>3.7 代码怎么分层</h3>
+<pre><code>arrow-game/
+├── main.py                  # 程序入口
+├── arrowgame/
+│   ├── model.py             # 纯逻辑：流星数据 + 路径检测 + 配色
+│   ├── solver.py            # 求解器：验证可解 + 提示 + 自动演示
+│   ├── levels.py            # 5 个关卡的数据
+│   └── ui.py                # 界面层：绘制、交互、动画、流程
+├── tests/
+│   ├── test_core.py         # 逻辑测试（含作业要求的 T01~T06）
+│   └── test_ui.py           # 界面端到端测试
+└── README.md</code></pre>
+<p><code>model.py</code>、<code>solver.py</code>、<code>levels.py</code> 完全不依赖 Tkinter。好处有两个： 一是路径判断、关卡可解性都能写成自动化测试，不用手点鼠标； 二是界面层不重复实现任何游戏规则，所有判定都调用逻辑层，不会出现「两处规则不一致」的问题。</p>
+<h2>四、AIGC 使用过程</h2>
+<p>我用的是 Codex，整个开发过程都是和它协作完成的。下面先列一张总表， 再挑三次比较有代表性的详细说。</p>
+<table><thead><tr><th>#</th><th>任务</th><th>AI 提供了什么</th><th>实际效果</th><th>我做了什么</th></tr></thead><tbody>
+<tr><td>1</td><td>图形库选型</td><td>推荐用 Pygame</td><td>❌ 本机 Python 3.14 装不上 pygame，程序起不来</td><td>改回标准库自带的 Tkinter，零依赖、助教直接能跑</td></tr>
+<tr><td>2</td><td>路径检测</td><td>一次写对了主要逻辑</td><td>四个方向判断正确，边界不报错</td><td>逐行理解「越界」和「被挡住」的区别，补中文注释和测试</td></tr>
+<tr><td>3</td><td>关卡生成</td><td>随机撒点生成布局</td><td>❌ 布局很丑，而且<strong>完全可能是死局</strong></td><td>改用「逆向构造」重写生成器，可解性由构造方式保证</td></tr>
+<tr><td>4</td><td>箭头形态改造</td><td>把数据结构从「一格+方向」改成「路径+方向」</td><td>连带影响了路径检测、撤销、求解器和整套测试</td><td>补上「别人的身体也算障碍」这条最容易漏的规则</td></tr>
+<tr><td>5</td><td>视觉改造</td><td>每个箭头分色（图着色）+ 爱心、进度点、进度条、时钟</td><td>❌ 第一版一大半箭头是同一种红色，依然单调</td><td>配色加「优先用全局最少的颜色」；色盘改为按色相 36° 均匀铺开</td></tr>
+<tr><td>6</td><td>排版自检</td><td>先让 AI「看」截图判断</td><td>❌ 描述含糊，有些说法和实际对不上</td><td>改成写脚本读画布包围盒两两比较，一次抓出文字溢出和重叠</td></tr>
+<tr><td>7</td><td>飞出动画</td><td>把动画改成「弧长不变的卷尺」几何</td><td>❌ 直线段比箭头短时，动画中途箭头会莫名变短</td><td>修正长度取值，并补几何测试锁死（起点等于原折线、滑出一个身位后共线、全程弧长守恒）</td></tr>
+<tr><td>8</td><td>箭头朝向修正</td><td>加校验：头部朝向必须等于身体最后一段</td><td>修完数据后我仍觉得两个箭头「像歪的」</td><td>追问后补上第二条：头部前面至少要有两格直杆</td></tr>
+<tr><td>9</td><td>动效细节</td><td>给飞出动画加了拖尾残影</td><td>❌ 颜色往背景混了 62%，暗得几乎看不见</td><td>改成混 25% 并逐帧变暗；用脚本数残影个数和颜色定位问题</td></tr>
+<tr><td>10</td><td>星空背景</td><td>渐变 + 星云 + 158 颗星星分三层闪烁，随机流星</td><td>❌ 第一版流星从画面中部出发，一出来就躲在说明卡片后面</td><td>把出生点挪到无遮挡处；闪烁改为每帧只更新三分之一，开销降到三分之一</td></tr>
+<tr><td>11</td><td>流星样式</td><td>照着参考图把头部改成五角星、拖尾改成散开的条纹</td><td>❌ 第一版 5 条粗条纹加起来接近一整格，糊成一片；条纹端点的半圆还错算在中心线上</td><td>收成 3 条细条纹并拉开间距；补几何断言（靠头部收拢、尾端整体偏一侧、头部前方不许有线条）</td></tr>
+</tbody></table>
+<p>表格里打了 ❌ 的是真的踩过坑的，下面挑四次展开说。</p>
+<h3>第 1 次：AI 推荐的工具根本装不上</h3>
+<p>我一开始只说了一句「用 Python 写个小游戏，带图形界面」，AI 就推荐了 Pygame，理由是动画和音效支持更好。 听起来很合理——直到我准备运行：本机 Python 是 3.14，<strong>pygame 没有对应的 wheel，装不上</strong>，程序根本起不来。</p>
+<p>改成标准库自带的 Tkinter 之后，问题就变成了「动画要自己用 <code>after()</code> 写」。但这笔交换是划算的： 助教拿到仓库不需要 <code>pip install</code> 就能直接跑。<strong>AI 给的方案是否可行，取决于具体环境，必须自己验证一遍。</strong></p>
+<h3>第 3 次：AI 生成的关卡居然是死局</h3>
+<p>我一开始的要求很简单：「随机生成 5 个关卡」。AI 很快就给出了一批布局，看起来也挺像样。 但我顺手用求解器跑了一遍，发现有几关根本无解——比如两条箭头头对头互相指着， 谁也飞不出去。这种错误光看布局是看不出来的。</p>
+<p>改成「逆向构造」之后就再没出现过死局：从最后一次被消除的那条开始倒着摆， 每摆一条就检查它此刻是否畅通。<strong>可解性由构造方式本身保证，而不是靠事后碰运气。</strong></p>
+<p>这件事给我留下的规矩是：<strong>每个关卡都必须能被求解器完整走通</strong>， 而且这条规矩被写成了自动测试，不是我记在心里。</p>
+<h3>第 7 次：卷尺动画被「截断」了</h3>
+<p>我希望箭头飞出去时不要整条僵硬地平移，而是像卷尺被拉出来那样一节节解开。 AI 给的方案很漂亮：把箭头当成弧长不变的带子，沿自己的折线滑动。</p>
+<p>但第一版有个隐蔽的 bug：如果头部之外那段直线比箭头本身还短， 取不到足够长的路径，箭头会<strong>在动画中途莫名其妙变短一截</strong>。 我是看导出的动画帧时觉得「尾巴好像少了一块」才发现的。</p>
+<p>修好之后我补了一条几何测试，断言三件事：起点处卷尺等于原折线、滑出一个身位后所有点共线、 动画过程中折线总长度始终等于原箭头长度。<strong>动画本身很难自动断言， 但把它拆成几何之后，「有没有真的解开」「有没有被截断」就都变成可以算的东西了。</strong></p>
+<h3>第 9 次：AI 做的拖尾「做了，但看不见」</h3>
+<p>给飞出动画加拖尾时，AI 的逻辑完全正确，残影也确实生成了—— 我后来数过，某一帧同时有 4 个残影。但<strong>残影的颜色往棋盘背景混了 62%， 暗得和背景糊在一起</strong>，动画看起来跟没加一样。</p>
+<p>我一开始以为是「颜色太淡所以看不见」，其实是它压根没挪开—— 逐像素扫了一条横剖面才确认：正常应该扫出「主线红、两侧各一条浅粉」， 实际扫出来浅粉正好压在主线正中间。</p>
+<p>定位之后补了一条回归测试，断言每条细线离主线的距离必须大于 4 像素。 我特意把修复回退了一次验证：那条测试立刻报 <code>2.0478 not greater than 4.0</code>， 说明它真能守住这个问题，不是摆设。</p>
+<h2>五、测试结果</h2>
+<h3>手工测试（作业要求的 T01–T06）</h3>
+<table><thead><tr><th>编号</th><th>测试内容</th><th>预期结果</th><th>实际结果</th><th>是否通过</th></tr></thead><tbody>
+<tr><td>T01</td><td>点击前方无阻挡的箭头</td><td>箭头飞出棋盘并消失</td><td>整条流星像卷尺一样飞出，它占的格子全部腾空，心数不变</td><td>✅</td></tr>
+<tr><td>T02</td><td>点击前方有阻挡的箭头</td><td>箭头不消失，失误次数减 1</td><td>流星向前拱一下变红再弹回，挡路的流星泛红光，熄灭一颗心</td><td>✅</td></tr>
+<tr><td>T03</td><td>点击位于边缘且朝向棋盘外的箭头</td><td>箭头正常消失，不发生越界错误</td><td>正常飞出，无异常报错</td><td>✅</td></tr>
+<tr><td>T04</td><td>消除本关全部箭头</td><td>显示通关并进入下一关</td><td>弹出通关界面，点「下一关」进入下一关</td><td>✅</td></tr>
+<tr><td>T05</td><td>失误次数耗尽</td><td>显示失败并允许重新开始</td><td>5 颗心用完后弹出失败界面，点「重玩本关」恢复初始状态</td><td>✅</td></tr>
+<tr><td>T06</td><td>游戏进行中重新开始</td><td>箭头布局和失误次数恢复</td><td>布局复位、心补满到 5 颗、用时归零</td><td>✅</td></tr>
+</tbody></table>
+<h3>自动化测试</h3>
+<p>手工测试之外，我把上面这些也写成了自动测试，总共 <strong>64 个用例</strong>：</p>
+<ul><li><code>tests/test_core.py</code>：43 个用例，覆盖 T01–T03、路径检测、关卡质量检查；</li><li><code>tests/test_ui.py</code>：21 个用例，覆盖 T04–T06 以及界面流程。</li></ul>
+<pre><code>python -m unittest discover -s tests -t . -v
+# Ran 64 tests in 19.0s
+# OK</code></pre>
+<p>几个我觉得比较有价值的测试思路：</p>
+<ul><li><strong>四个方向各测一遍</strong>，而不是只测一个方向就认为对了。T03 专门测了「贴着边的箭头朝外指」， 因为那是最容易出现索引越界的地方；</li><li><strong>界面也能自动测</strong>：测试会真的创建窗口、模拟点击把整关打通， 再检查动画结束后状态是否正确、通关界面有没有出现。没有图形界面的环境会自动跳过；</li><li><strong>把美术效果也变成断言</strong>：拐角圆角化后首尾不能变、拖尾条纹必须真的偏离主线、 头部前方不许画任何线条、每一关的流星朝向必须和身体末端同向。</li></ul>
+<h3>测试中真的抓到的问题</h3>
+<p>自动化测试不是摆设，它抓到了几个我自己看不出来的问题：</p>
+<ol><li><strong>第 2 关原本无法通关</strong>——就是前面说的头对头死锁，靠求解器发现；</li><li><strong>动画中途箭头会莫名变短</strong>——卷尺几何取路径时被截断，靠几何测试发现；</li><li><strong>拖尾细线压根没挪开</strong>——画了等于没画，靠「离主线距离必须大于 4 像素」发现；</li><li><strong>尾端多出一个跑到中心线上的小圆</strong>——条纹端点的半圆错算在中心线上，靠单元测试发现；</li><li><strong>关卡注释和真实数据对不上</strong>——<code>levels.py</code> 里贴的字符画是自动生成的， 我加了一条测试校验它和真实数据一致，防止改了关卡忘改注释。</li></ol>
+<p>另外还有几个是<strong>看截图</strong>看出来的：底栏提示文字压在状态文字上、 较长的一句状态提示超出窗口下边界、标题贴住副标题。这三个都不是靠肉眼盯出来的， 而是写了个脚本把画布上每个文字元素的<strong>包围盒</strong>读出来两两比较—— 比用眼睛看截图可靠得多。</p>
+<h2>六、PSP 表格</h2>
+<table><thead><tr><th>任务</th><th>预估耗时(小时)</th><th>实际耗时(小时)</th><th>差异(小时)</th></tr></thead><tbody>
+<tr><td>需求分析与游戏设计</td><td>1.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>Python 与图形库学习</td><td>1.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>游戏界面实现</td><td>2.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>路径与碰撞逻辑实现</td><td>2.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>关卡设计与生成器</td><td>2.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>AIGC 辅助开发</td><td>3.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>测试与修改</td><td>3.0</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>README 与博客撰写</td><td>1.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+<tr><td>合计</td><td>16.5</td><td><code>&lt;待填&gt;</code></td><td><code>&lt;待填&gt;</code></td></tr>
+</tbody></table>
+<p>几点说明：</p>
+<ul><li>「AIGC 辅助开发」这一项没有单独计时，因为它和别的阶段完全重叠—— 写路径检测、设计关卡、改 bug、写测试，每一步都是和 AI 一起做的；</li><li>「关卡设计」超时最多，因为改了两轮：先是随机生成的关卡不可靠要重做， 后来又要为「长得像流星」补两条几何约束；</li><li>「测试与修改」也超时，因为很多时间花在了<strong>把美术效果变成可断言的测试</strong>上。</li></ul>
+<h2>七、心得体会</h2>
+<p><strong>AI 让「从想法到能跑起来」变得非常快，但它给的东西必须验证。</strong></p>
+<p>这次最深的感受是：AI 出稿很快，但它不一定对，而且<strong>错得很难用肉眼发现</strong>。 随机生成的关卡可能是死局、卷尺动画可能在中途被截断、拖尾可能压根没画出来—— 这些都不是盯着屏幕看能看出来的。所以我后来养成了一个习惯： AI 产出的东西，尽量找一个能自动验证的办法。 关卡就写求解器，路径判断就写单元测试，美术效果就写成几何断言。</p>
+<p><strong>「数据没错」和「看起来对」是两回事。</strong></p>
+<p>箭头朝向那个问题特别典型：AI 把「朝向必须等于身体最后一段」这条校验加上之后， 数据层面已经严格正确了，但我在截图里仍然觉得有两个箭头「像歪的」。 追问下去才发现第二个原因——头前那段直杆只有一格，眼睛会顺着更长的那几段身体看过去。 于是又补了「头部前面至少两格直杆」。</p>
+<p>这件事让我意识到：<strong>程序的正确性可以证明，但观感只能靠看和调。</strong> 我现在给这类图形都配了几何断言，至少能让「已经调好的观感」不再被后续改动破坏。</p>
+<p><strong>审美上的问题，AI 不会主动告诉你。</strong></p>
+<p>配色那个例子也是：AI 严格满足了「相邻不同色」这个约束， 但从整体观感看，一大半箭头是同一种红色，依然单调。 还有流星拖尾——单看一颗流星，「5 条粗尾巴」确实华丽； 但一关有十几颗，华丽就变成了糊。最后我是按<strong>整个棋盘的观感</strong>去定参数， 而不是按单个图形的观感，这两者在做界面时是不一样的思路。</p>
+<p><strong>有些坑只有真做到那一步才会遇到。</strong></p>
+<p>从「一个能跑的游戏」到「一个能交出去的项目」，中间还有很多事情： README 要能让人照着跑起来、GitHub 不能只传一次、代码要分层到逻辑层可以脱离界面测试…… 这些在开发阶段完全暴露不出来，因为在自己机器上跑永远是对的。</p>
+</article>
+<div class="page-foot">© 2026 zzl3141 · 用心制作于 GitHub Pages · <a href="/">返回首页</a></div>
+</body>
+</html>
